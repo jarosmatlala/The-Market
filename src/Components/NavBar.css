@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #ffd700;
+    padding: 10px;
+  }
+  
+  .navbar-logo h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+  }
+  
+  .navbar-links li {
+    margin: 0 15px;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .navbar-search input {
+    padding: 5px;
+    margin-left: 20px;
+  }
+  
+  .navbar-icons span {
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  

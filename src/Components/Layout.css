@@ -1,0 +1,72 @@
+.variety-bliss {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .product-card {
+    width: 24%;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .product-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .product-rating i {
+    font-size: 14px;
+    color: #ffcc00;
+  }
+  
+  .product-availability {
+    color: #4CAF50;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .product-price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .top-rated {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .product-card {
+      width: 48%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-card {
+      width: 10;
+    }
+}
