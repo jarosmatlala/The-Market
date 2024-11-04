@@ -3,7 +3,8 @@ import './Layout.css';
 
 const ProductCard = ({ title, price, rating, stockStatus, imageSrc, description, reviews }) => {
   return (
-    <div className="product-card">
+    <div className="product-grid">
+<div className="product-card">
       <img src={imageSrc} alt={title} className="product-image" />
       <div className="product-info">
         <h3 className="product-title">{title}</h3>
@@ -14,6 +15,9 @@ const ProductCard = ({ title, price, rating, stockStatus, imageSrc, description,
         {reviews && <p className="product-reviews">★ {reviews}</p>}
       </div>
     </div>
+
+    </div>
+    
   );
 };
 
