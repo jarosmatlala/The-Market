@@ -16,8 +16,6 @@ const ProductCard = ({
 
   { const { addItemToCart } = useContext(CartContext);
 
-
-
   const handleButtonClick = () => {
     alert(`You Selected ${name} .Add to cart ?.`);
     const item = {
@@ -25,8 +23,10 @@ const ProductCard = ({
       name,
       price
     };
-    }; addItemToCart(item); alert(`You Selected ${name}. Add to cart?`);
+    }; addItemToCart(item); 
+    alert(`You Selected ${name}. Add to cart?`);
   };
+  
   return (
     <div className="product-grid">
       <div className="product-card">
@@ -34,20 +34,17 @@ const ProductCard = ({
         <img src={imageSrc} alt={title} className="product-image" />
         <div className="product-info">
           <h3 className="product-title">{title}</h3>
-
           <p className="product-rating">★{rating}</p>
           <p className="product-stock">{available}</p>
           <p className="product-price">R {price}</p>
           <p className="product-stock">
             {available ? "In Stock" : "Out of Stock"}
           </p>
-
           {description && <p className="product-description">{description}</p>}
           {/* {reviews && <p className="product-reviews">★ {reviews}</p>} */}
 
           <button className="buy-button" onClick={handleButtonClick}>
             <span>  Add to🛒</span>
-
           </button>
         </div>
       </div>
