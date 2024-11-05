@@ -4,18 +4,28 @@ import { db } from "../../config/firebase";
 import "./Layout.css";
 
 const ProductCard = ({
+  id,
   title,
   name,
   available,
   price,
   rating,
-  stockStatus,
   imageSrc,
   description,
-  reviews,
 }) => {
+
+  { const { addItemToCart } = useContext(CartContext);
+
+
+
   const handleButtonClick = () => {
     alert(`You Selected ${name} .Add to cart ?.`);
+    const item = {
+      id,
+      name,
+      price
+    };
+    }; addItemToCart(item); alert(`You Selected ${name}. Add to cart?`);
   };
   return (
     <div className="product-grid">
@@ -36,7 +46,8 @@ const ProductCard = ({
           {/* {reviews && <p className="product-reviews">★ {reviews}</p>} */}
 
           <button className="buy-button" onClick={handleButtonClick}>
-            Add to cart
+            <span>  Add to🛒</span>
+
           </button>
         </div>
       </div>
