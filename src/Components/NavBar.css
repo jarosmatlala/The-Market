@@ -36,4 +36,15 @@
     font-size: 20px;
     cursor: pointer;
   }
+
+  
+  
+  .navbar-icons span {
+    cursor: pointer;
+  }
+  
+  .navbar-icons a {
+    text-decoration: none;
+    color: inherit;
+  }
   

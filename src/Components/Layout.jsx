@@ -1,93 +1,68 @@
-import React, { useEffect, useState} from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../config/firebase';
-import './Layout.css';
+import React, { useEffect, useState,useContext } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
+import { CartContext } from "../context/CartContext";
+import "./Layout.css";
 
-const ProductCard = ({ title, price, rating, stockStatus, imageSrc, description, reviews }) => {
+const ProductCard = ({ id, title, name, available, price, rating, imageSrc, description
+}) => { const { addItemToCart } = useContext(CartContext); const handleButtonClick = () => { const item = { id, name, price }; addItemToCart(item); alert(`You selected ${name}. Added to cart.`); };
+  
   return (
     <div className="product-grid">
-<div className="product-card">
-      <img src={imageSrc} alt={title} className="product-image" />
-      <div className="product-info">
-        <h3 className="product-title">{title}</h3>
-        <p className="product-rating">★{rating}</p>
-        <p className="product-stock">{stockStatus}</p>
-        <p className="product-price">R {price}</p>
-        {description && <p className="product-description">{description}</p>}
-        {reviews && <p className="product-reviews">★ {reviews}</p>}
+      <div className="product-card">
+        <h3 className="product-name">{name}</h3>
+        <img src={imageSrc} alt={title} className="product-image" />
+        <div className="product-info">
+          <h3 className="product-title">{title}</h3>
+          <p className="product-rating">★{rating}</p>
+          <p className="product-stock">{available}</p>
+          <p className="product-price">R {price}</p>
+          <p className="product-stock">
+            {available ? "In Stock" : "Out of Stock"}
+          </p>
+          {description && <p className="product-description">{description}</p>}
+
+          <button className="buy-button" onClick={handleButtonClick}>
+            <span>  Add to🛒</span>
+          </button>
+        </div>
       </div>
     </div>
-
-    </div>
-    
   );
 };
 
 const Layout = () => {
-  const [products, setProducts] = useState([]);    // {
-    //   title: 'African Map',
-    //   price: '110.00',
-    //   rating: '0.0',
-    //   stockStatus: 'In stock',
-    //   imageSrc: './src-images/African_Map.webp',
-    //   description: 'A brief description of the product', 
-    // reviews: 'No reviews yet', 
-    // },
-    // {
-    //   title: 'Everysun Aftersun Cooling Lotion 200ml',
-    //   price: '79.99',
-    //   rating: '0.0',
-    //   stockStatus: 'In stock',
-    //   imageSrc: './src-images/Abstract Color Painting on White Painted Wall.jpeg',
-    //   description: 'A brief description of the product', 
-    // reviews: 'No reviews yet', 
-    // },
-    // {
-    //   title: 'Bedside Table',
-    //   price: '25.00',
-    //   rating: '0.0',
-    //   stockStatus: 'In stock',
-    //   imageSrc: './src-images/Bedside Table.jpeg',
-    //   description: 'A brief description of the product', 
-    // reviews: 'No reviews yet', 
-    // },
-    // {
-    //   title: 'Bistro Table',
-    //   price: '130.00',
-    //   rating: '0.0',
-    //   stockStatus: 'In stock',
-    //   imageSrc: './src-images/Bistro Table',
-    //   description: 'A brief description of the product', 
-    // reviews: 'No reviews yet', 
-    // },];
+  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-       const fetchProducts = async () => {
-       const querySnapshot = await getDocs(collection(db, 'products')); 
-       const productsData = querySnapshot.docs.map(doc => ({
-       id: doc.id,
-       ...doc.data(
-       ) }));
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const productsData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setProducts(productsData);
-     }; 
-     fetchProducts(); 
-    }, []);
-    
-    return ( 
-    
-    <div className="product-layout"> 
-    {products.map((product, index) => (
-       <ProductCard 
-       key={index} 
-       title={product.title} 
-       price={product.price} 
-       rating={product.rating} 
-       stockStatus={product.stockStatus} 
-       imageSrc={product.main_image}
-       description={product.description} 
-       reviews={product.reviews} /> 
-      ))} 
-      </div> 
-      );
-     };
-      export default Layout;
+    };
+    fetchProducts();
+  }, []);
+
+  return (
+    <div className="product-layout">
+      {products.map((product, index) => (
+        <ProductCard
+          key={index}
+          id={product.id}
+          title={product.title}
+          name={product.name}
+          available={product.available}
+          price={product.price}
+          rating={product.rating}
+          stockStatus={product.available}
+          imageSrc={product.main_image}
+          description={product.description}
+        />
+      ))}
+    </div>
+  );
+};
+export default Layout;
