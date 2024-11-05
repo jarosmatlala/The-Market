@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { auth } from './firebase';
+import { auth } from '../../config/firebase';
 import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    return signOut(auth);
+    // return signOut(auth);
+    setCurrentUser(null);
   };
 
   useEffect(() => {
