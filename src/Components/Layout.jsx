@@ -1,31 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { CartContext } from "../context/CartContext";
 import "./Layout.css";
 
-const ProductCard = ({
-  id,
-  title,
-  name,
-  available,
-  price,
-  rating,
-  imageSrc,
-  description,
-}) => {
-
-  { const { addItemToCart } = useContext(CartContext);
-
-  const handleButtonClick = () => {
-    alert(`You Selected ${name} .Add to cart ?.`);
-    const item = {
-      id,
-      name,
-      price
-    };
-    }; addItemToCart(item); 
-    alert(`You Selected ${name}. Add to cart?`);
-  };
+const ProductCard = ({ id, title, name, available, price, rating, imageSrc, description
+}) => { const { addItemToCart } = useContext(CartContext); const handleButtonClick = () => { const item = { id, name, price }; addItemToCart(item); alert(`You selected ${name}. Added to cart.`); };
   
   return (
     <div className="product-grid">
@@ -41,7 +21,6 @@ const ProductCard = ({
             {available ? "In Stock" : "Out of Stock"}
           </p>
           {description && <p className="product-description">{description}</p>}
-          {/* {reviews && <p className="product-reviews">★ {reviews}</p>} */}
 
           <button className="buy-button" onClick={handleButtonClick}>
             <span>  Add to🛒</span>
@@ -72,6 +51,7 @@ const Layout = () => {
       {products.map((product, index) => (
         <ProductCard
           key={index}
+          id={product.id}
           title={product.title}
           name={product.name}
           available={product.available}
@@ -80,7 +60,6 @@ const Layout = () => {
           stockStatus={product.available}
           imageSrc={product.main_image}
           description={product.description}
-          // reviews={product.reviews}
         />
       ))}
     </div>

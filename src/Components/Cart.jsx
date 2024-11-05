@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import CartItem from './CartItem';
+import './Cart.css';
+import PayPalButton from './PayPal';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -12,13 +14,21 @@ const Cart = () => {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
 
+  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
+
+
   return (
     <div className="cart">
       <h1>Your Cart</h1>
-      {cartItems.map(item => (
-        <CartItem key={item.id} item={item} onRemove={removeItemFromCart} />
-      ))}
-      <p>Total: R {cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)}</p>
+      {cartItems.length === 0 ? (
+        <p>No items in the cart</p>
+      ) : (
+        cartItems.map(item => (
+          <CartItem key={item.id} item={item} onRemove={removeItemFromCart} />
+        ))
+      )}
+      <p>Total: R {totalAmount.toFixed(2)}</p>
+      <PayPalButton />
     </div>
   );
 };

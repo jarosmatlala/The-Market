@@ -1,0 +1,32 @@
+.cart {
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .cart-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .cart-item h2 {
+    margin: 0;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+
+.navbar {
+}
+
+.navbar-icons span {
+  cursor: pointer;
+}
+
+.navbar-icons a {
+  text-decoration: none;
+  color: inherit;
+}
